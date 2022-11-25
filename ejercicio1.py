@@ -29,5 +29,18 @@ def insertar(lista,nodo):
             break
     return lista
 
-def HuffmanTree(text):
-    
+def HuffmanTree(simbolos,frecuencias):
+    nodos = []
+    for i in range(len(simbolos)):
+        nodos.append(arbol(simbolos[i],frecuencias[i]))
+    nodos = ordenar(nodos)
+    while len(nodos)>1:
+        nodo = arbol('XX', nodos[0].frecuencia + nodos[1].frecuencia)
+        nodo.izquierda = nodos[0]
+        nodo.izquierda.padre = nodo
+        nodo.derecha = nodos[1]
+        nodo.derecha.padre = nodo
+        nodos = insertar(nodos,nodo)
+        nodos.pop(1)
+        nodos.pop(0)
+    return nodos[0]    
