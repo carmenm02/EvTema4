@@ -5,6 +5,8 @@ from heapq import heappop,heappush
 
 from sympy import root
 
+def isLeaf(root):
+    return root.izquierda is None and root.derecha is None
 
 class arbol:
     def __init__(self,frecuencia,simbolo) :
@@ -43,4 +45,14 @@ def HuffmanTree(simbolos,frecuencias):
         nodos = insertar(nodos,nodo)
         nodos.pop(1)
         nodos.pop(0)
-    return nodos[0]    
+    return nodos[0] 
+
+def encode(root, s, huffman_code):
+    if root is None:
+        return
+
+    if isLeaf(root):
+        huffman_code[root.ch] = s if len(s) > o else '1'
+
+    encode(root.izquierda, s + '0', huffman_code)
+    encode(root.derecha, s + '1', huffman_code)
