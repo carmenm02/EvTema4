@@ -56,3 +56,14 @@ def encode(root, s, huffman_code):
 
     encode(root.izquierda, s + '0', huffman_code)
     encode(root.derecha, s + '1', huffman_code)
+
+def decode(root,index, s):
+    if root is None:
+        return index
+    if isLeaf(root):
+        print(root.ch, end='')
+        return index
+
+    index = index + 1
+    root = root.left if s[index] == '0' else root.right
+    return decode(root, index, s)
