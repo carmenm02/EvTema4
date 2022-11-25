@@ -1,4 +1,9 @@
 import heapq
+from multiprocessing.connection import deliver_challenge
+from turtle import right
+from heapq import heappop,heappush
+
+from sympy import root
 
 
 class arbol:
@@ -25,12 +30,4 @@ def insertar(lista,nodo):
     return lista
 
 def HuffmanTree(text):
-    if len(text) == 0:
-        return
-    
-    frecuencia = {i: text.count(i) for i in set(text)}
-
-    pq = [arbol(k,v) for k, v in frecuencia.items()]
-    heapq.heapify(pq)
-
     
